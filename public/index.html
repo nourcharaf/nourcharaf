@@ -1,297 +1,1093 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.126.1"><script src="/hugo-PaperMod/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=hugo-PaperMod/livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>PaperMod</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nour Charaf | iOS Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & ROOT ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-<meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
-<meta name="author" content="Theme PaperMod">
-<link rel="canonical" href="http://localhost:1313/hugo-PaperMod/">
-<link crossorigin="anonymous" href="/hugo-PaperMod/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/hugo-PaperMod/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/hugo-PaperMod/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/hugo-PaperMod/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/hugo-PaperMod/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/hugo-PaperMod/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/hugo-PaperMod/index.xml">
-<link rel="alternate" type="application/json" href="http://localhost:1313/hugo-PaperMod/index.json">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/hugo-PaperMod/">
-<link rel="alternate" hreflang="fr" href="http://localhost:1313/hugo-PaperMod/fr/">
-<link rel="alternate" hreflang="fa" href="http://localhost:1313/hugo-PaperMod/fa/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --off-white: #f5f5f3;
+      --grey-light: #e8e8e8;
+      --grey-mid: #999;
+      --grey-dark: #444;
+      --max: 900px;
+      --font-display: 'Bodoni Moda', Georgia, serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
 
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
+    html { scroll-behavior: smooth; }
 
-            .list {
-                background: var(--theme);
-            }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      cursor: crosshair;
+      overflow-x: hidden;
+    }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
+    /* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--black);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
+    /* ── NOISE OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 9998;
+    }
 
-    </style>
-</noscript>
-  
+    /* ── SECTION NAV DOTS ── */
+    #section-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
 
-<meta property="og:title" content="PaperMod" />
-<meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/hugo-PaperMod/" />
-<meta property="og:image" content="http://localhost:1313/hugo-PaperMod/images/papermod-cover.png" />
+    .nav-dot {
+      width: 6px; height: 6px;
+      border: 1px solid var(--black);
+      background: transparent;
+      cursor: crosshair;
+      transition: background 0.2s;
+      display: block;
+    }
 
+    .nav-dot.active { background: var(--black); }
+    .nav-dot:hover { background: var(--black); }
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="http://localhost:1313/hugo-PaperMod/images/papermod-cover.png" />
-<meta name="twitter:title" content="PaperMod"/>
-<meta name="twitter:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"/>
+    @media (max-width: 760px) { #section-nav { display: none; } }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "PaperMod",
-  "url": "http://localhost:1313/hugo-PaperMod/",
-  "description": "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod",
-  "thumbnailUrl": "http://localhost:1313/hugo-PaperMod/favicon.ico",
-  "sameAs": [
-      "https://github.com/adityatelange/hugo-PaperMod", "https://discord.gg/ahpmTvhVmp", "https://x.com/intent/tweet/?text=Checkout%20Hugo%20PaperMod%20%E2%9C%A8%0AA%20fast,%20clean,%20responsive%20Hugo%20theme.\u0026url=https://github.com/adityatelange/hugo-PaperMod\u0026hashtags=Hugo,PaperMod", "https://ko-fi.com/adityatelange"
-  ]
-}
-</script>
+    /* ── APP WRAPPER ── */
+    #app {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 32px 100px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    #app.loaded { opacity: 1; }
+
+    /* ── HEADER ── */
+    header {
+      padding-top: 80px;
+      padding-bottom: 0;
+      border-bottom: 2px solid var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .header-text { flex: 1; }
+
+    .header-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .header-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--grey-mid);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 9vw, 86px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .h1-sub {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 9vw, 86px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      color: var(--black);
+      display: block;
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 3px;
+      height: 0.8em;
+      background: var(--black);
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── PHOTO COLUMN ── */
+    .header-photo-wrap {
+      width: 200px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(100%) contrast(1.1);
+      display: block;
+      border: 2px solid var(--black);
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: -24px;
+      right: 0;
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    /* ── CONTACTS ROW ── */
+    .contacts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 32px;
+      border-top: 1px solid var(--grey-light);
+      border-left: 1px solid var(--grey-light);
+    }
+
+    .contact-cell {
+      padding: 8px 14px;
+      font-size: 10px;
+      letter-spacing: 0.3px;
+      border-right: 1px solid var(--grey-light);
+      border-bottom: 1px solid var(--grey-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-cell a {
+      color: var(--black);
+      text-decoration: none;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .contact-cell a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0%; height: 1px;
+      background: var(--black);
+      transition: width 0.2s ease;
+    }
+
+    .contact-cell a:hover::after { width: 100%; }
+
+    .contact-cell.inverted {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .contact-cell.inverted a {
+      color: var(--white);
+    }
+
+    .contact-cell.inverted a::after {
+      background: var(--white);
+    }
+
+    .contact-icon {
+      font-size: 9px;
+      opacity: 0.5;
+    }
+
+    /* ── META STRIP ── */
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      border-left: 2px solid var(--black);
+      border-right: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      margin-bottom: 72px;
+    }
+
+    .meta-item {
+      padding: 10px 16px;
+      font-size: 10px;
+    }
+
+    .meta-item:not(:last-child) { border-right: 1px solid var(--grey-light); }
+
+    .meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .meta-value {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .meta-value a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--grey-light);
+      transition: border-color 0.15s;
+    }
+
+    .meta-value a:hover { border-color: var(--black); }
+
+    /* ── SECTION HEADER ── */
+    .section-wrap {
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section-wrap.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--grey-mid);
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+
+    h2 {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--grey-light);
+    }
+
+    /* ── PROFILE SUMMARY ── */
+    #summary-text {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--grey-dark);
+      max-width: 700px;
+      font-family: var(--font-display);
+      font-style: italic;
+    }
+
+    /* ── WORK ENTRIES ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-top: 1px solid var(--grey-light);
+      padding: 24px 0;
+      gap: 24px;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .entry::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: var(--grey-light);
+    }
+
+    .entry:last-child::after { display: none; }
+
+    .entry:hover { background: var(--off-white); }
+    .entry:hover .entry-left,
+    .entry:hover .entry-right { background: transparent; }
+
+    .entry-left { padding: 0 16px 0 0; }
+
+    .entry-dates {
+      font-size: 9.5px;
+      color: var(--grey-mid);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 300;
+    }
+
+    .entry-company {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .entry-location {
+      font-size: 9px;
+      color: var(--grey-mid);
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .entry-right { padding: 0; }
+
+    .entry-position {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+      padding: 4px 10px;
+      background: var(--black);
+      color: var(--white);
+      display: inline-block;
+    }
+
+    .highlights {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .highlights li {
+      font-size: 10.5px;
+      line-height: 1.7;
+      color: var(--grey-dark);
+      padding: 3px 0 3px 14px;
+      position: relative;
+    }
+
+    .highlights li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--grey-mid);
+      font-size: 9px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-top: 1px solid var(--grey-light);
+      padding: 24px 0;
+      gap: 24px;
+    }
+
+    .edu-left {
+      font-size: 9.5px;
+      color: var(--grey-mid);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      padding-right: 16px;
+    }
+
+    .edu-right {}
+
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .edu-institution {
+      font-size: 10px;
+      color: var(--grey-mid);
+      display: block;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .edu-courses { margin-top: 12px; }
+
+    .edu-courses-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .course-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .course-chip {
+      font-size: 9px;
+      border: 1px solid var(--grey-light);
+      padding: 3px 8px;
+      letter-spacing: 0.5px;
+      color: var(--grey-dark);
+      transition: all 0.15s;
+    }
+
+    .course-code {
+      font-weight: 700;
+      color: var(--grey-mid);
+      margin-right: 4px;
+    }
+
+    .course-chip:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+      cursor: crosshair;
+    }
+
+    .paper-note {
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--grey-mid);
+      font-style: italic;
+      font-family: var(--font-display);
+      padding-left: 12px;
+      border-left: 2px solid var(--grey-light);
+    }
+
+    /* ── SKILLS / MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--grey-light);
+      border-bottom: 1px solid var(--grey-light);
+      padding: 12px 0;
+      margin-bottom: 24px;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0 20px;
+      color: var(--black);
+      border-right: 1px solid var(--grey-light);
+      flex-shrink: 0;
+    }
+
+    .marquee-item.dim { color: var(--grey-mid); font-weight: 400; }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid var(--grey-light);
+    }
+
+    .skill-cell {
+      padding: 20px 20px;
+      border-bottom: 1px solid var(--grey-light);
+    }
+
+    .skill-cell:nth-child(odd) { border-right: 1px solid var(--grey-light); }
+    .skill-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+    .skill-name {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--black);
+      display: block;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--grey-light);
+    }
+
+    .skill-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .kw-pill {
+      font-size: 9.5px;
+      padding: 3px 8px;
+      border: 1px solid var(--grey-light);
+      color: var(--grey-dark);
+      letter-spacing: 0.5px;
+      transition: all 0.15s;
+      cursor: crosshair;
+    }
+
+    .kw-pill:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--grey-light);
+    }
+
+    .lang-cell {
+      padding: 20px;
+      border-right: 1px solid var(--grey-light);
+    }
+
+    .lang-cell:last-child { border-right: none; }
+
+    .lang-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      display: block;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+
+    .lang-level {
+      font-size: 9px;
+      color: var(--grey-mid);
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .lang-bar {
+      height: 2px;
+      background: var(--grey-light);
+    }
+
+    .lang-fill {
+      height: 100%;
+      background: var(--black);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0%;
+    }
+
+    /* ── INTERESTS ── */
+    .interests-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .interest-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 7px 14px;
+      border: 1px solid var(--black);
+      text-transform: uppercase;
+      cursor: crosshair;
+      transition: all 0.15s;
+      font-family: var(--font-mono);
+    }
+
+    .interest-tag:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ── PERMIT BOX ── */
+    .permit-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid var(--black);
+      padding: 12px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      padding-top: 20px;
+      border-top: 2px solid var(--black);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .footer-left {
+      font-size: 9px;
+      color: var(--grey-mid);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-sig {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 24px;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    /* ── REVEAL ANIMATION ── */
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      #app { padding: 0 16px 60px; }
+      header { padding-top: 48px; }
+      h1 { font-size: 42px; }
+      .h1-sub { font-size: 42px; }
+      .header-top { flex-direction: column-reverse; gap: 24px; }
+      .header-photo-wrap { width: 130px; }
+      .meta-strip { grid-template-columns: 1fr; }
+      .meta-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--grey-light); }
+      .entry, .edu-entry { grid-template-columns: 1fr; gap: 12px; }
+      .entry-left, .edu-left { padding-right: 0; border-bottom: 1px solid var(--grey-light); padding-bottom: 12px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-cell:nth-child(odd) { border-right: none; }
+      .skill-cell { border-bottom: 1px solid var(--grey-light) !important; }
+      .lang-grid { grid-template-columns: repeat(2, 1fr); }
+      .lang-cell:nth-child(2n) { border-right: none; }
+      .lang-cell:nth-child(1),
+      .lang-cell:nth-child(2) { border-bottom: 1px solid var(--grey-light); }
+      footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .contacts-row { flex-direction: column; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
+  <!-- Scroll Progress -->
+  <div id="progress-bar"></div>
 
-</script>
+  <!-- Section Navigation Dots -->
+  <nav id="section-nav" aria-label="Section navigation">
+    <a class="nav-dot active" href="#sec-profile" title="Profile"></a>
+    <a class="nav-dot" href="#sec-experience" title="Experience"></a>
+    <a class="nav-dot" href="#sec-education" title="Education"></a>
+    <a class="nav-dot" href="#sec-skills" title="Skills"></a>
+    <a class="nav-dot" href="#sec-languages" title="Languages"></a>
+    <a class="nav-dot" href="#sec-interests" title="Interests"></a>
+  </nav>
 
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="http://localhost:1313/hugo-PaperMod/" accesskey="h" title="PaperMod (Alt + H)">PaperMod</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="http://localhost:1313/hugo-PaperMod/fr/" title="French"
-                            aria-label=":fr:">🇫🇷</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost:1313/hugo-PaperMod/fa/" title="Fa"
-                            aria-label="Fa">Fa</a>
-                    </li>
-                </ul>
-            </div>
+  <div id="app">
+
+    <!-- ── HEADER ── -->
+    <header class="reveal">
+      <div class="header-top">
+        <div class="header-text">
+          <div class="header-eyebrow" id="header-label">iOS Developer</div>
+          <h1 id="header-name-first"></h1>
+          <span class="h1-sub" id="header-name-last"><span class="cursor-blink"></span></span>
         </div>
-        <ul id="menu">
-            <li>
-                <a href="http://localhost:1313/hugo-PaperMod/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/hugo-PaperMod/search/" title="Search">
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost:1313/hugo-PaperMod/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/adityatelange/hugo-PaperMod/wiki/" title="WiKi">
-                    <span>WiKi</span>&nbsp;
-                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
-                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                        <path d="M15 3h6v6"></path>
-                        <path d="M10 14L21 3"></path>
-                    </svg>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>PaperMod&rsquo;s Demo</h1>
+        <div class="header-photo-wrap">
+          <img src="Nour Charaf Photo.jpg" alt="Nour Charaf" class="profile-photo" id="profile-photo">
+        </div>
+      </div>
+
+      <!-- Contacts -->
+      <div class="contacts-row" id="contacts-row"></div>
     </header>
-    <div class="entry-content">
-        <p>👋 Welcome to demo page of Hugo&rsquo;s theme PaperMod!</p>
-<ul>
-<li><strong>PaperMod</strong>  is designed to be clean and simple but fast and responsive theme with useful feature-set that enhances UX.</li>
-<li>Feel free to show your support by giving us a star 🌟 on GitHub and sharing with your friends and social media .</li>
-<li>PaperMod is based on theme <a href="https://github.com/nanxiaobei/hugo-paper/tree/4330c8b12aa48bfdecbcad6ad66145f679a430b3">Paper</a>.</li>
-</ul>
+
+    <!-- ── META STRIP ── -->
+    <div class="meta-strip reveal" style="transition-delay:0.1s">
+      <div class="meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value" id="meta-location">—</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Work Permit</span>
+        <span class="meta-value">🇩🇪 Aufenthaltserlaubnis · Erwerbstätigkeit erlaubt</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Website</span>
+        <span class="meta-value"><a id="meta-site" href="#" target="_blank">—</a></span>
+      </div>
     </div>
-    <footer class="entry-footer">
-        <div class="social-icons" >
-    <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener noreferrer me"
-        title="View Source on Github">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-    <a href="https://discord.gg/ahpmTvhVmp" target="_blank" rel="noopener noreferrer me"
-        title="Join Discord Community">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="currentColor" stroke="none" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
-</svg>
-    </a>
-    <a href="https://x.com/intent/tweet/?text=Checkout%20Hugo%20PaperMod%20%E2%9C%A8%0AA%20fast,%20clean,%20responsive%20Hugo%20theme.&amp;url=https://github.com/adityatelange/hugo-PaperMod&amp;hashtags=Hugo,PaperMod" target="_blank" rel="noopener noreferrer me"
-        title="Share PaperMod on X/Twitter">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-    <path
-        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-    </path>
-</svg>
-    </a>
-    <a href="https://ko-fi.com/adityatelange" target="_blank" rel="noopener noreferrer me"
-        title="Buy Me a Ko-Fi :)">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -3 23 27" preserveAspectRatio="xMidYMid meet" fill="none"
-    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734c4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09c-.443-.441-3.368-3.049-4.034-3.954c-.709-.965-1.041-2.7-.091-3.71c.951-1.01 3.005-1.086 4.363.407c0 0 1.565-1.782 3.468-.963c1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z" />
-</svg>
-    </a>
-</div>
 
+    <!-- ── PROFILE ── -->
+    <div class="section-wrap" id="sec-profile">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Profile</h2>
+        <div class="section-rule"></div>
+      </div>
+      <p id="summary-text"></p>
+    </div>
+
+    <!-- ── EXPERIENCE ── -->
+    <div class="section-wrap" id="sec-experience">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Experience</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div id="work-container"></div>
+    </div>
+
+    <!-- ── EDUCATION ── -->
+    <div class="section-wrap" id="sec-education">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Education</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div id="edu-container"></div>
+    </div>
+
+    <!-- ── SKILLS ── -->
+    <div class="section-wrap" id="sec-skills">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Technical Stack</h2>
+        <div class="section-rule"></div>
+      </div>
+      <!-- Marquee ticker filled by JS -->
+      <div class="marquee-wrap">
+        <div class="marquee-track" id="marquee-track"></div>
+      </div>
+      <div id="skills-container" class="skills-grid"></div>
+    </div>
+
+    <!-- ── LANGUAGES ── -->
+    <div class="section-wrap" id="sec-languages">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>Languages</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div id="lang-container" class="lang-grid"></div>
+    </div>
+
+    <!-- ── INTERESTS ── -->
+    <div class="section-wrap" id="sec-interests">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Interests</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div id="interests-container" class="interests-wrap"></div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="reveal">
+      <div class="footer-left">
+        <div id="footer-date"></div>
+        <div style="margin-top:4px">JSON Resume · nourcharaf.de</div>
+      </div>
+      <span class="footer-sig" id="footer-sig"></span>
     </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>© <a href="https://github.com/adityatelange/hugo-PaperMod/graphs/contributors">PaperMod Contributors</a></span> · 
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+  </div><!-- /#app -->
 
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
+  <script>
+    /* ────────────────────────────── DATA ────────────────────────────── */
+    const GIST_URL = "https://gist.githubusercontent.com/nourcharaf/ec5925e6f030f48c3037c27ccfd5bd3e/raw";
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
+    const langScores = {
+      "Native (C2)": 1,
+      "Fluent (C2)": 1,
+      "Intermediate (B2)": 0.65,
+      "Basic (A1)": 0.2
     };
 
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
+    function fmtDate(d) {
+      if (!d) return "Present";
+      const dt = new Date(d);
+      return dt.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+    }
+
+    /* ────────────────────────────── SCROLL PROGRESS ────────────────── */
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      progressBar.style.width = pct + '%';
+    });
+
+    /* ────────────────────────────── NAV DOTS ────────────────────────── */
+    const navDots = document.querySelectorAll('.nav-dot');
+    const sectionIds = ['sec-profile','sec-experience','sec-education','sec-skills','sec-languages','sec-interests'];
+
+    function updateNavDots() {
+      const mid = window.scrollY + window.innerHeight / 2;
+      sectionIds.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const { top, bottom } = el.getBoundingClientRect();
+        const absTop = top + window.scrollY;
+        const absBot = bottom + window.scrollY;
+        navDots[i].classList.toggle('active', mid >= absTop && mid <= absBot);
+      });
+    }
+    window.addEventListener('scroll', updateNavDots, { passive: true });
+
+    /* ────────────────────────────── INTERSECTION OBSERVER ─────────── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Animate language bars when section becomes visible
+          if (e.target.id === 'sec-languages') {
+            document.querySelectorAll('.lang-fill').forEach(bar => {
+              bar.style.width = bar.dataset.pct + '%';
+            });
+          }
         }
-    })
+      });
+    }, { threshold: 0.08 });
 
-</script>
+    document.querySelectorAll('.section-wrap, .reveal').forEach(el => observer.observe(el));
+
+    /* ────────────────────────────── FETCH & RENDER ─────────────────── */
+    fetch(GIST_URL)
+      .then(r => r.json())
+      .then(resume => {
+        const b = resume.basics;
+
+        /* Header name — split into first + last */
+        const nameParts = b.name.split(' ');
+        const firstName = nameParts[0];
+        const lastName = nameParts.slice(1).join(' ');
+        document.getElementById('header-name-first').textContent = firstName;
+        const lastEl = document.getElementById('header-name-last');
+        lastEl.innerHTML = lastName + '<span class="cursor-blink"></span>';
+        document.getElementById('header-label').textContent = b.label;
+
+        /* Contacts */
+        const contactsRow = document.getElementById('contacts-row');
+        const contactItems = [
+          { text: b.phone, href: `tel:${b.phone}`, icon: '☎' },
+          { text: b.email, href: `mailto:${b.email}`, icon: '✉' },
+          ...b.profiles.map(p => ({
+            text: p.network === 'Google Drive' ? 'Download CV' : p.network,
+            href: p.url,
+            icon: p.network === 'Google Drive' ? '↓' : '↗',
+            inverted: p.network === 'Google Drive'
+          }))
+        ];
+
+        contactsRow.innerHTML = contactItems.map(c => {
+          if (c.href) {
+            return `<div class="contact-cell${c.inverted ? ' inverted' : ''}">
+              <span class="contact-icon">${c.icon}</span>
+              <a href="${c.href}" target="${c.href.startsWith('mailto') ? '_self' : '_blank'}">${c.text}</a>
+            </div>`;
+          }
+          return `<div class="contact-cell">
+            <span class="contact-icon">${c.icon}</span>
+            ${c.text}
+          </div>`;
+        }).join('');
+
+        /* Meta strip */
+        document.getElementById('meta-location').textContent = `${b.location.city}, ${b.location.region}`;
+        const siteEl = document.getElementById('meta-site');
+        siteEl.href = b.url;
+        siteEl.textContent = new URL(b.url).hostname;
+
+        /* Summary */
+        document.getElementById('summary-text').textContent = b.summary;
+
+        /* Work */
+        document.getElementById('work-container').innerHTML = resume.work.map(w => `
+          <div class="entry reveal">
+            <div class="entry-left">
+              <div class="entry-dates">${fmtDate(w.startDate)}<br>— ${fmtDate(w.endDate)}</div>
+              <span class="entry-company">${w.name}</span>
+              <span class="entry-location">${w.location}</span>
+            </div>
+            <div class="entry-right">
+              <span class="entry-position">${w.position}</span>
+              <ul class="highlights">
+                ${w.highlights.map(h => `<li>${h}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `).join('');
+
+        /* Education */
+        document.getElementById('edu-container').innerHTML = resume.education.map(e => {
+          const courseList = e.courses ? e.courses.filter(c => !c.includes('Paper:')) : [];
+          const paper = e.courses ? e.courses.find(c => c.includes('Paper:')) : null;
+          const coursesHtml = courseList.length > 0 ? `
+            <div class="edu-courses">
+              <span class="edu-courses-label">Courses Completed</span>
+              <div class="course-chips">
+                ${courseList.map(c => {
+                  const parts = c.split(' - ');
+                  const code = parts[0];
+                  const title = parts.slice(1).join(' - ');
+                  return `<span class="course-chip"><span class="course-code">${code}</span>${title ? ` ${title}` : ''}</span>`;
+                }).join('')}
+              </div>
+              ${paper ? `<div class="paper-note">Thesis: ${paper.split('Paper: ')[1]}</div>` : ''}
+            </div>` : '';
+          return `
+          <div class="edu-entry reveal">
+            <div class="edu-left">
+              <div>${fmtDate(e.startDate)}</div>
+              <div>— ${fmtDate(e.endDate)}</div>
+            </div>
+            <div class="edu-right">
+              <span class="edu-degree">${e.area}${e.studyType ? ` <em style="font-size:13px;font-weight:400">(${e.studyType})</em>` : ''}</span>
+              <span class="edu-institution">${e.institution}</span>
+              ${coursesHtml}
+            </div>
+          </div>`;
+        }).join('');
+
+        /* Skills marquee — all keywords flat */
+        const allKw = resume.skills.flatMap(s => s.keywords);
+        const marqueeTrack = document.getElementById('marquee-track');
+        const marqueeContent = allKw.map((k, i) =>
+          `<span class="marquee-item${i % 3 === 2 ? ' dim' : ''}">${k}</span>`
+        ).join('');
+        // duplicate for seamless loop
+        marqueeTrack.innerHTML = marqueeContent + marqueeContent;
+
+        /* Skills grid */
+        document.getElementById('skills-container').innerHTML = resume.skills.map(s => `
+          <div class="skill-cell">
+            <span class="skill-name">${s.name}</span>
+            <div class="skill-keywords">
+              ${s.keywords.map(k => `<span class="kw-pill">${k}</span>`).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        /* Languages */
+        document.getElementById('lang-container').innerHTML = resume.languages.map(l => {
+          const score = langScores[l.fluency] ?? 0.5;
+          return `
+          <div class="lang-cell">
+            <span class="lang-name">${l.language}</span>
+            <span class="lang-level">${l.fluency}</span>
+            <div class="lang-bar"><div class="lang-fill" data-pct="${score*100}" style="width:0%"></div></div>
+          </div>`;
+        }).join('');
+
+        /* Interests */
+        const unique = [...new Set(resume.interests.flatMap(i => i.keywords))];
+        document.getElementById('interests-container').innerHTML = unique.map(k =>
+          `<span class="interest-tag">${k}</span>`
+        ).join('');
+
+        /* Footer */
+        document.getElementById('footer-date').textContent =
+          `Stuttgart, ${new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'})}`;
+        document.getElementById('footer-sig').textContent = b.name;
+
+        /* Load profile photo if available */
+        const photo = document.getElementById('profile-photo');
+        photo.onerror = () => {
+          photo.src = b.image; // fallback to GitHub avatar
+          photo.onerror = null;
+        };
+
+        /* Reveal app */
+        document.getElementById('app').classList.add('loaded');
+
+        /* Re-observe new elements */
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      })
+      .catch(err => {
+        console.error("Failed to load resume JSON:", err);
+        const app = document.getElementById('app');
+        app.innerHTML = '<p style="padding:80px 32px;font-family:monospace;font-size:12px;color:#999">Failed to load resume data. Check the network connection.</p>';
+        app.style.opacity = '1';
+      });
+  </script>
 </body>
-
 </html>
